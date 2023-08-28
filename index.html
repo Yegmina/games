@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Yegmina - створюємо відмінні ігри</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Yegmina - створюємо відмінні ігри">
+    <meta name="keywords" content="Yegmina, ігри, розробка, геймдев, розробник, комп'ютерні ігри">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+ /* Reset CSS */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* General styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+a {
+  color: #0000CD;
+  text-decoration: none;
+  position: relative;
+}
+
+a:hover {
+  color: green;
+}
+
+a:hover::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: green;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s ease-in-out;
+}
+
+a:hover::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  right: 0;
+  width: 100%;
+  height: 2px;
+  background-color: orange;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.2s ease-in-out;
+}
+
+a:hover::before,
+a:hover::after {
+  transform: scaleX(1);
+}
+
+
+ul {
+  list-style: none;
+}
+
+/* Header styles */
+header {
+  background-color: #fff;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul li {
+  margin-right: 1.5rem;
+}
+
+/* Main styles */
+main {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+section {
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: orange;
+  opacity: 0.5;
+}
+
+section::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: orange;
+  opacity: 0.5;
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+section p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+section a {
+  display: inline-block;
+  background-color: orange;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+
+
+
+/* Footer styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+footer p {
+  margin-bottom: 0;
+}
+
+
+
+
+
+  </style>
+  
+  <style>
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+</style>
+<style>
+/* Define the element that will have the changing text color */
+#myText {
+  /* Set initial text color */
+  color: #000;
+  /* Define the animation properties */
+  animation-name: colorChange;
+  animation-duration: 5s; /* Duration of the animation */
+  animation-timing-function: linear; /* Linear timing function for smooth color transition */
+  animation-iteration-count: infinite; /* Infinite loop of the animation */
+}
+
+/* Define the animation keyframes */
+@keyframes colorChange {
+  0% {
+    color: #000; /* Initial color */
+  }
+  50% {
+    color: #ff0000; /* Color at halfway point */
+  }
+  100% {
+    color: #00ff00; /* Final color */
+  }
+}
+
+</style>
+
+<style>
+ /* Стиль для элемента с подчеркиванием */
+    .myUnderline {
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+      color: #000; /* Цвет текста */
+      padding-bottom: 2px; /* Высота подчеркивания */
+    }
+
+    /* Псевдоэлемент для анимации подчеркивания */
+    .myUnderline::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px; /* Высота подчеркивания */
+      background-color: #00f; /* Цвет подчеркивания */
+      transform: scaleX(0); /* Начальный масштаб подчеркивания (0 - невидимо) */
+      transform-origin: bottom left; /* Точка преобразования (правый нижний угол) */
+      transition: transform 0.3s ease-in-out; /* Анимация преобразования */
+    }
+
+    /* Анимация преобразования всегда активна */
+    .myUnderline::after {
+      animation: underlineAnimation 2s infinite; /* Применение анимации с бесконечным повторением */
+    }
+
+    /* Определение анимации */
+    @keyframes underlineAnimation {
+      0% {
+        transform: scaleX(0); /* Начальный масштаб подчеркивания (0 - невидимо) */
+      }
+     
+      100% {
+        transform: scaleX(1); /* Начальный масштаб подчеркивания (0 - невидимо) */
+      }
+    }
+</style>
+<style>
+
+.decor-7 {
+  position: relative;
+  padding: 5px 10px 5px 10px;
+  border-top: 4px solid #5FE1B3;
+  border-left: 4px solid #5FE1B3;
+  display: inline-block;
+}
+.decor-7:before {
+  content: ""; 
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: -22px;
+  left: -22px;
+  border: 4px solid #5FE1B3;
+  box-sizing: border-box;
+}
+</style>
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+showSlides(1);
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+</script><!--
+<script>
+var slideIndex = 0;
+showSlides();
+
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}
+    slides[slideIndex-1].style.display = "block";
+    setTimeout(showSlides, 10000); // Change image every 10 seconds
+}
+</script>-->
+  </head>
+  <body>
+    <header>
+      <h1 class="myUnderline">Yegmina</h1>
+      <nav>
+        <ul>
+          <li><a href="#about"><b>Про нас</b></a></li>
+         <!-- <li><a href="#games"><b>Ігри:</b></a></li> -->
+		  <li><a href="PixeWarrior.html"><b>Pixe Warrior</b></a></li><br>
+		  <li><a href="PhysiQuiz.html"><b>Physi Quiz</b></a></li><br>
+		<li><a href="game4096.html"><b>game4096</b></a></li><br>
+		<li><a href="sweet_match_3.html"><b>SweetMatch3</b></a></li><br>
+		<li><a href="PacMan3d.html"><b>PacMan3d</b></a></li><br>
+          <li><a href="#contact"><b>Контакти</b></a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="about">
+        <h2 class="decor-7">Про нас</h2>
+        <p>Yegmina - це компанія, яка спеціалізується на розробці комп'ютерних ігор. Ми створюємо відмінні ігри з різноманітними сценаріями, які захоплюють гравців з усього світу. Наша команда має досвід у геймдеві та розробці ігор на різних платформах. Але в основному спеціалізуємося на Андроід платформу.</p>
+      </section>
+	  
+      <section id="games">
+       <div class="slideshow-container">
+
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides fade">
+    <div class="numbertext">1 / 4</div>
+    <img src="https://play-lh.googleusercontent.com/WyWzq2wcqeLOxjLyAkO462s4ZIHU9VgvTtLNxcHewoJfKi8hP9X-D_UhFeZHW4Kg5-7m=w1052-h592-rw" style="width:100%">
+    <div class="text"><a href="sweet_match_3.html">Sweet match 3</a></div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">2 / 4</div>
+    <img src="https://play-lh.googleusercontent.com/1a4v2HONmEHBLHC78Drokig4eobhRgFdFHn0zVj54z4eziTEExrBlzSDjJ5GtkbzJssV=w1052-h592-rw" style="width:100%">
+    <div class="text"><a href="PixeWarrior.html">PixeWarrior</a></div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">3 / 4</div>
+    <img src="https://play-lh.googleusercontent.com/aajGByxhM5gWKQ5aCqXWupifejZwMGM_uYX6WbotfHksnzg_H6uVX40g7BUa3d6HyuOB=w1052-h592-rw" style="width:100%">
+    <div class="text"><a href="PhysiQuiz.html">PhysiQuiz</a></div>
+  </div>
+   <div class="mySlides fade">
+    <div class="numbertext">4 / 4</div>
+    <img src="https://play-lh.googleusercontent.com/5FSIslRlrJ6L8JBdNStTLI-xcOWKVp6lYiLqkdXeh7BPl0KBfSqPe4q4E27I6VbnYA=w1052-h592-rw" style="width:100%">
+    <div class="text"><a href="game4096.html">Game4096</a></div>
+  </div>
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+   <span class="dot" onclick="currentSlide(4)"></span>
+</div>
+      </section>
+      <section id="contact">
+        <h2 class="decor-7">Контакти</h2>
+        <p>Якщо у вас є запитання щодо наших ігор або ви бажаєте замовити розробку ігри, будь ласка, зв'яжіться з нами за допомогою наступних контактів:</p>
+        <ul>
+          <li>Електронна пошта: <a href="mailto:yegmina1@gmail.com">yegmina1@gmail.com</a></li>
+          
+        </ul>
+      </section>
+	   <footer>
+
+<h3 id="myText" >Created by Tereshchenko Yehor,
+Yegmina</h3>
+<!--<img src="https://play-lh.googleusercontent.com/EbEX3AN4FC4pu3lsElAHCiksluOVU8OgkgtWC43-wmm_aHVq2D65FmEM97bPexilUAvlAY5_4ARH8Tb3RxQ=w96-h32-rw">
+<br>-->Електронна адреса:
+<br><a href="mailto:yegmina1@gmail.com">yegmina1@gmail.com</a>
+
+</footer>
+    </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Співпадіння чисел</title>
+<style>
+#gameBoard {
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tile {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  font-size: 36px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+</style>
+</head>
+<body>
+ <div id="gameBoard"></div>
+ <script>let gameBoard = document.getElementById("gameBoard");
+
+let tiles = [];
+let matchedTiles = [];
+
+for (let i = 1; i <= 16; i++) {
+  let tile = document.createElement("div");
+  tile.classList.add("tile");
+  tile.innerText = i;
+  tile.addEventListener("click", function() {
+    if (matchedTiles.includes(tile)) {
+      return;
+    }
+    tile.classList.toggle("selected");
+    if (tiles.filter(t => t.classList.contains("selected")).length == 2) {
+      let selectedTiles = tiles.filter(t => t.classList.contains("selected"));
+      if (selectedTiles[0].innerText == selectedTiles[1].innerText) {
+        selectedTiles.forEach(t => {
+          t.classList.add("matched");
+          matchedTiles.push(t);
+        });
+      }
+      selectedTiles.forEach(t => t.classList.remove("selected"));
+    }
+  });
+  tiles.push(tile);
+  gameBoard.appendChild(tile);
+}
+
+</script>
+</body>
+</html>

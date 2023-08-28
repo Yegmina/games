@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>PhysiQuiz - A Fun and Educational Physics Quiz Game</title>
+	 <style>
+ /* Reset CSS */
+ html, body {
+  width: 100%;
+  height: 100%;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* General styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+a {
+  color: #0000CD;
+  text-decoration: none;
+  position: relative;
+}
+
+a:hover {
+  color: green;
+}
+
+a:hover::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: green;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s ease-in-out;
+}
+
+a:hover::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  right: 0;
+  width: 100%;
+  height: 2px;
+  background-color: orange;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.2s ease-in-out;
+}
+
+a:hover::before,
+a:hover::after {
+  transform: scaleX(1);
+}
+
+
+ul {
+  list-style: none;
+}
+
+/* Header styles */
+header {
+  background-color: #fff;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul li {
+  margin-right: 1.5rem;
+}
+
+/* Main styles */
+main {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+section {
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: gold;
+  opacity: 0.5;
+}
+
+section::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: gold;
+  opacity: 0.5;
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+section p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+section a {
+  display: inline-block;
+  background-color: orange;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+
+
+
+/* Footer styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+footer p {
+  margin-bottom: 0;
+}
+
+
+
+
+
+  </style>
+  
+  <style type="text/css">
+
+.gallerycontainer{
+position: relative;
+/*Add a height attribute and set to largest image's height to prevent overlaying*/
+}
+
+.thumbnail img{
+border: 1px solid white;
+margin: 0 5px 5px 0;
+}
+
+.thumbnail:hover{
+background-color: transparent;
+}
+
+.thumbnail:hover img{
+border: 1px solid blue;
+}
+
+.thumbnail span{ /*CSS for enlarged image*/
+position: absolute;
+background-color: lightyellow;
+padding: 5px;
+left: -1000px;
+border: 1px dashed gray;
+visibility: hidden;
+color: black;
+text-decoration: none;
+}
+
+.thumbnail span img{ /*CSS for enlarged image*/
+border-width: 0;
+padding: 2px;
+width: 100%;
+}
+
+.thumbnail:hover span{ /*CSS for enlarged image*/
+visibility: visible;
+top: -100px;
+left: 400px; /*position where enlarged image should offset horizontally */
+z-index: 50;
+transform: scale(5);
+}
+
+
+</style>
+<style>
+
+body {  /* fix webkit adjacent sibling bug */
+  -webkit-animation: bugfix infinite 1s; 
+}
+
+@-webkit-keyframes bugfix { 
+  from {padding:0;} 
+  to {padding:0;} 
+}
+
+.mobilesidemenu {
+    width: 0;
+    /* width of main container doesn't need width */
+}
+
+.mobilesidemenu, .mobilesidemenu * {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.mobilesidemenu input[type="checkbox"] {
+    /* checkbox used to toggle menu state */
+    position: absolute;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+}
+
+.mobilesidemenu > label {
+    /* Main label icon to toggle menu state */
+    z-index: 100;
+    display: block;
+    position: relative;
+    font-size: 10px;
+    /* change font size to change label dimensions. Leave width/height below alone */
+    width: 3.5em;
+    height: 3em;
+    top: 0;
+    left: 0;
+    background: white;
+    text-indent: -1000px;
+    border: 0.6em solid black;
+    /* border color */
+    border-width: 0.6em 0;
+    cursor: pointer;
+    -moz-transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+    /* transition for animating label */
+}
+
+
+.mobilesidemenu > label::before, .mobilesidemenu > label::after {
+    /* inner stripes inside label */
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 0.6em;
+    top: 50%;
+    margin-top: -0.3em;
+    left: 0;
+    background: black;
+    /* stripes background color. Change to match border color of parent label above */
+    -moz-transform: rotate(0);
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+    -moz-transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+    /* transition for flipping label */
+}
+
+.mobilesidemenu nav {
+    /* NAV menu inside container */
+    margin: 0;
+    padding: 5px;
+    position: fixed;
+    text-transform: uppercase;
+    border-right: 1px solid gray;
+    font: bold 14px Verdana;
+    width: 280px;
+    /* width of nav menu */
+    height: 100%;
+    left: -280px;
+    /* set left to -width of menu */
+    top: 0;
+    z-index: 10000;
+		-webkit-transform: translate3d(0, 0, 0); /* trigger hardware acceleration */
+		transform: translate3d(0, 0, 0);
+    background: rgb(242,242,242);
+    /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, rgba(242,242,242,1) 0%, rgba(219,219,219,1) 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(242,242,242,1)), color-stop(100%,rgba(219,219,219,1)));
+    /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(242,242,242,1) 0%,rgba(219,219,219,1) 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover, rgba(242,242,242,1) 0%,rgba(219,219,219,1) 100%);
+    /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover, rgba(242,242,242,1) 0%,rgba(219,219,219,1) 100%);
+    /* IE10+ */
+    background: radial-gradient(ellipse at center, rgba(242,242,242,1) 0%,rgba(219,219,219,1) 100%);
+    /* W3C */
+    -moz-transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+    /* transition for animating nav in and out */
+}
+
+
+.mobilesidemenu nav h2 {
+    color: black;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #73462d;
+}
+
+.mobilesidemenu ul {
+    /* UL menu inside container */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobilesidemenu li {
+}
+
+
+.mobilesidemenu li a {
+    display: block;
+    text-decoration: none;
+    font-size: 1.4em;
+    /* font size of menu links */
+    border-left: 8px solid gray;
+    border-bottom: 1px solid #c1c1c1;
+    color: #3b3b3b;
+    margin: 0;
+    padding: 12px;
+}
+
+.mobilesidemenu li a:hover {
+    background: SaddleBrown;
+    color: white;
+}
+
+
+.mobilesidemenu nav label {
+    /* label button inside nav to close menu */
+    cursor: pointer;
+    position: absolute;
+    text-transform: lowercase;
+    right: 0;
+    top: 0;
+    -moz-border-radius: 0 0 0 40px;
+    -webkit-border-radius: 0 0 0 40px;
+    border-radius: 0 0 0 40px;
+    width: 40px;
+    height: 30px;
+    background: black;
+    box-shadow: 0 0 5px gray;
+    text-align: center;
+}
+
+
+.mobilesidemenu nav label::after {
+    /* label button x */
+    content: "x";
+    color: white;
+    display: block;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-left: 6px;
+    -moz-transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+}
+
+.mobilesidemenu .overlay {
+    /* overlay that covers entire page when menu is open */
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: .6;
+    background: black;
+    z-index: 1001;
+    visibility: hidden;
+}
+
+.mobilesidemenu .overlay label {
+    /* label of overlay that closes menu when clicked on */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+
+.mobilesidemenu nav label:hover::after {
+    /* state of NAV label::after when mouse moves over */
+    -moz-transform: rotatey(180deg);
+    -ms-transform: rotatey(180deg);
+    -webkit-transform: rotatey(180deg);
+    transform: rotatey(180deg);
+    /* flip labels vertically onMouseover */
+}
+
+.mobilesidemenu input[type="checkbox"]:checked ~ label {
+    /* state of main menu label when menu is open  */
+    border-color: transparent;
+}
+
+.mobilesidemenu input[type="checkbox"]:checked ~ label::before {
+    /* state of main menu label::before when menu is open  */
+    transform: rotate(-45deg);
+}
+
+.mobilesidemenu input[type="checkbox"]:checked ~ label::after {
+    /* state of main menu label::after when menu is open  */
+    transform: rotate(45deg);
+}
+
+.mobilesidemenu input[type="checkbox"]:checked ~ nav {
+    /* state of NAV when menu is open  */
+    left: 0;
+    /* set left to 0 to animate it into view  */
+}
+
+.mobilesidemenu input[type="checkbox"]:checked ~ div.overlay {
+    /* state of overlay when menu is open  */
+    visibility: visible;
+}
+
+</style>
+
+
+<style>
+
+.mobilesidemenu > label{
+	border: 6px solid black;
+	background: #eee;
+	height: 30px;
+}
+
+</style>
+
+<script>
+ // ie 8 menu compatibility code:
+document.createElement("nav")
+window.onload = function(){
+	var mobilemenunav = document.getElementById("msidemenu")
+	var mobilemaintoggler = document.getElementById("maintoggler")
+	var mobilenavtoggler = document.getElementById("navtoggler")
+	mobilemaintoggler.onclick = function(){
+		mobilemenunav.style.left = 0
+	}
+	mobilenavtoggler.onclick = function(){
+		mobilemenunav.style.left = '-100%'
+	}
+}
+
+</script>
+
+<style>
+.decor-3::before {
+    content: "";
+    width: 10px;
+    height: 40px;
+    background-color: #5FE1B3;
+    position: absolute;
+    z-index: -1;
+    transform: translate(-20px, 5px);
+}
+.decor-3::after {
+  content: '';
+  display: block;
+  width: 258px;
+  height: 3px;
+  margin: 5px auto 0;
+  background-color: #5FE1B3;
+}
+</style>
+
+
+  </head>
+  <body>
+ <div class="mobilesidemenu">
+	<input type="checkbox" id="togglebox" />
+	<!-- Modify anything inside the NAV element -->
+	<nav id="msidemenu">
+		<h2>Меню</h2>
+		
+		<li><a href="index.html">Головна сторінка</a></li><br>
+		
+		<li><a href="PixeWarrior.html">Pixe Warrior</a></li><br>
+		<li><a href="game4096.html">game4096</a></li><br>
+			<li><a href="PacMan3d.html">PacMan3d</a></li><br>
+			
+				<li><a href="sweet_match_3.html">SweetMatch3</a></li><br>
+		
+		
+		
+		
+		<label for="togglebox" id="navtoggler"></label>
+	</nav>
+	
+	<div class="overlay"><label for="togglebox"></label></div>
+	<label class="toggler" id="maintoggler" for="togglebox"></label>
+</div>
+
+  
+    <h1><a href="https://play.google.com/store/apps/details?id=com.Yegmina.PhysiQuiz"> PhysiQuiz </a> - Забавна та Освітня Гра-вікторина з Фізики</h1>
+<section>
+<p>
+  <a href="https://play.google.com/store/apps/details?id=com.Yegmina.PhysiQuiz"> PhysiQuiz </a> - це забавна та освітня гра-вікторина, яка перевіряє ваші знання з фізики. З широким спектром питань, що охоплюють теми, такі як механіка, термодинаміка, електромагнетизм та інші, ця гра кине виклик вашому розумінню фізичного світу навколо нас.
+</p>
+</section>
+    <h2 class="decor-3" align="center">Особливості</h2>
+<section>
+<ul>
+  <li><h4 align="center">Кілька рівнів складності</h4></li>
+  <li><h4 align="center">Формат запитань "правда-брехня"</h4></li>
+  <li><h4 align="center">Детальні пояснення до кожного запитання</h4></li>
+  <li><h4 align="center">Відстеження прогресу</h4></li>
+</ul>
+</section>
+<h2  class="decor-3" align="center">Деякі скріни з гри</h2>
+<div class="gallerycontainer">
+
+<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-32.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-32.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
+
+<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-33.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-33.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
+
+
+
+<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-34.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-34.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
+
+
+
+
+<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-36.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-36.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
+
+
+<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-37.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-37.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
+
+
+
+
+<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-38.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-38.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
+
+
+
+</div>
+
+<h2  class="decor-3" align="center">Як грати</h2>
+<section>
+<p>
+  Щоб грати в <a href="https://play.google.com/store/apps/details?id=com.Yegmina.PhysiQuiz"> PhysiQuiz </a>, просто виберіть рівень складності та почніть
+  відповідати на запитання. Кожне запитання презентується у форматі
+  "правда-брехня", що дозволяє легко грати та розуміти. Після відповіді на
+  запитання гра надасть детальне пояснення правильної відповіді, щоб ви
+  могли навчитися на своїх помилках та покращити своє розуміння фізичних
+  концепцій.
+</p>
+</section>
+<h2  class="decor-3" align="center">Для кого це?</h2>
+<section>
+<p>
+  Незалежно від того, чи ви студент фізик, чи просто любите вчитися про
+  світ навколо вас, <a href="https://play.google.com/store/apps/details?id=com.Yegmina.PhysiQuiz"> PhysiQuiz </a> - це чудовий спосіб випробувати себе та
+  розширити свої знання фізики. З кількома рівнями складності, гра підходить
+  як початківцям, так і експертам.
+</p>
+</section>
+<h2 class="decor-3" align="center">Початок гри</h2>
+<section>
+<p>
+  Готові перевірити свої знання фізики? Грайте в <a href="https://play.google.com/store/apps/details?id=com.Yegmina.PhysiQuiz"> PhysiQuiz </a> сьогодні та
+  перевірте свої знання порівняно з іншими! Гра доступна безкоштовно на
+  пристроях Android.
+</p>
+</section>
+ <footer>
+
+Created by Tereshchenko Yehor,
+Yegmina<br>
+<img src="https://play-lh.googleusercontent.com/EbEX3AN4FC4pu3lsElAHCiksluOVU8OgkgtWC43-wmm_aHVq2D65FmEM97bPexilUAvlAY5_4ARH8Tb3RxQ=w96-h32-rw">
+<br>Електронна адреса:
+<br><a href="mailto:yegmina1@gmail.com">yegmina1@gmail.com</a>
+<div class="container">
+<p>© 2023 Yegmina. Усі права захищено (ст. 8 Закону України «Про авторське право і суміжні права»).</p>
+</div>
+</footer>
+
+  </body>
+</html>

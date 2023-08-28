@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>PacMan 3D - Аркадна гра</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+/* Reset some default styles */
+body, figure, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set body font and background */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* Set container width and margin */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Style header section */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ffcc00;
+}
+
+/* Style about section */
+#about {
+    background-color: #fff;
+    padding: 40px;
+}
+
+#about h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#about p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Style screenshots section */
+#screenshots {
+    background-color: grey;
+    padding: 40px;
+}
+
+#screenshots h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.screenshots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.screenshots img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* Style download section */
+#download {
+    background-color: #333;
+    color: #fff;
+    padding: 40px;
+    text-align: center;
+}
+
+#download h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.download-button {
+    display: inline-block;
+    background-color: #ffcc00;
+    color: #333;
+    font-size: 18px;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.download-button:hover {
+    background-color: #ffdb58;
+}
+
+/* Style footer section */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+footer p {
+    font-size: 14px;
+}
+/* Додатковий код для оригінальності та екстравагантності */
+.container {
+    position: relative;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(45deg, #ffcc00, #ffdb58);
+    opacity: 0.1;
+    z-index: -1;
+}
+
+/* Додатковий код для модерністі та сучасності */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul li a {
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #ffcc00;
+    color: #333;
+}
+
+#about {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    align-items: center;
+}
+
+#about p {
+    margin-bottom: 0;
+}
+
+.screenshots {
+    justify-content: center;
+}
+
+.download-button {
+    display: inline-block;
+    background-color: #ffcc00;
+    color: #333;
+    font-size: 18px;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.download-button:hover {
+    background-color: #ffdb58;
+}
+
+
+</style>
+<style>
+/* Додатковий код для особливого ефекту переходу */
+nav ul li a {
+    position: relative;
+    overflow: hidden;
+}
+
+nav ul li a::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #ffcc00;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+}
+
+nav ul li a:hover::before {
+    transform: scaleX(1);
+}
+
+</style>
+ <style>
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+</style>
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+showSlides(1);
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+</script><!--
+<script>
+var slideIndex = 0;
+showSlides();
+
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}
+    slides[slideIndex-1].style.display = "block";
+    setTimeout(showSlides, 10000); // Change image every 10 seconds
+}
+</script>-->
+<style>
+
+body {  /* fix webkit adjacent sibling bug */
+  -webkit-animation: bugfix infinite 1s; 
+}
+
+@-webkit-keyframes bugfix { 
+  from {padding:0;} 
+  to {padding:0;} 
+}
+
+.mobilesidemenu {
+    width: 0;
+    /* width of main container doesn't need width */
+}
+
+.mobilesidemenu, .mobilesidemenu * {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.mobilesidemenu input[type="checkbox"] {
+    /* checkbox used to toggle menu state */
+    position: absolute;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+}
+
+.mobilesidemenu > label {
+    /* Main label icon to toggle menu state */
+    z-index: 100;
+    display: block;
+    position: relative;
+    font-size: 10px;
+    /* change font size to change label dimensions. Leave width/height below alone */
+    width: 3.5em;
+    height: 3em;
+    top: 0;
+    left: 0;
+    background: white;
+    text-indent: -1000px;
+    border: 0.6em solid black;
+    /* border color */
+    border-width: 0.6em 0;
+    cursor: pointer;
+    -moz-transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+    /* transition for animating label */
+}
+
+
+.mobilesidemenu > label::before, .mobilesidemenu > label::after {
+    /* inner stripes inside label */
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 0.6em;
+    top: 50%;
+    margin-top: -0.3em;
+    left: 0;
+    background: black;
+    /* stripes background color. Change to match border color of parent label above */
+    -moz-transform: rotate(0);
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+    -moz-transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+    /* transition for flipping label */
+}
+
+.mobilesidemenu nav {
+    /* NAV menu inside container */
+    margin: 0;
+    padding: 5px;
+    position: fixed;
+    text-transform: uppercase;
+    border-right: 1px solid gray;
+    font: bold 14px Verdana;
+    width: 280px;
+    /* width of nav menu */
+    height: 100%;
+    left: -280px;
+    /* set left to -width of menu */
+    top: 0;
+    z-index: 10000;
+		-webkit-transform: translate3d(0, 0, 0); /* trigger hardware acceleration */
+		transform: translate3d(0, 0, 0);
+    background: rgb(242,242,242);
+    /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, rgba(242,242,242,1) 0%, rgba(219,219,219,1) 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(242,242,242,1)), color-stop(100%,rgba(219,219,219,1)));
+    /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(242,242,242,1) 0%,rgba(219,219,219,1) 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover, rgba(242,242,242,1) 0%,rgba(219,219,219,1) 100%);
+    /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover, rgba(242,242,242,1) 0%,rgba(219,219,219,1) 100%);
+    /* IE10+ */
+    background: radial-gradient(ellipse at center, rgba(242,242,242,1) 0%,rgba(219,219,219,1) 100%);
+    /* W3C */
+    -moz-transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+    /* transition for animating nav in and out */
+}
+
+
+.mobilesidemenu nav h2 {
+    color: black;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #73462d;
+}
+
+.mobilesidemenu ul {
+    /* UL menu inside container */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobilesidemenu li {
+}
+
+
+.mobilesidemenu li a {
+    display: block;
+    text-decoration: none;
+    font-size: 1.4em;
+    /* font size of menu links */
+    border-left: 8px solid gray;
+    border-bottom: 1px solid #c1c1c1;
+    color: #3b3b3b;
+    margin: 0;
+    padding: 12px;
+}
+
+.mobilesidemenu li a:hover {
+    background: SaddleBrown;
+    color: white;
+}
+
+
+.mobilesidemenu nav label {
+    /* label button inside nav to close menu */
+    cursor: pointer;
+    position: absolute;
+    text-transform: lowercase;
+    right: 0;
+    top: 0;
+    -moz-border-radius: 0 0 0 40px;
+    -webkit-border-radius: 0 0 0 40px;
+    border-radius: 0 0 0 40px;
+    width: 40px;
+    height: 30px;
+    background: black;
+    box-shadow: 0 0 5px gray;
+    text-align: center;
+}
+
+
+.mobilesidemenu nav label::after {
+    /* label button x */
+    content: "x";
+    color: white;
+    display: block;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-left: 6px;
+    -moz-transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+}
+
+.mobilesidemenu .overlay {
+    /* overlay that covers entire page when menu is open */
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: .6;
+    background: black;
+    z-index: 1001;
+    visibility: hidden;
+}
+
+.mobilesidemenu .overlay label {
+    /* label of overlay that closes menu when clicked on */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+
+.mobilesidemenu nav label:hover::after {
+    /* state of NAV label::after when mouse moves over */
+    -moz-transform: rotatey(180deg);
+    -ms-transform: rotatey(180deg);
+    -webkit-transform: rotatey(180deg);
+    transform: rotatey(180deg);
+    /* flip labels vertically onMouseover */
+}
+
+.mobilesidemenu input[type="checkbox"]:checked ~ label {
+    /* state of main menu label when menu is open  */
+    border-color: transparent;
+}
+
+.mobilesidemenu input[type="checkbox"]:checked ~ label::before {
+    /* state of main menu label::before when menu is open  */
+    transform: rotate(-45deg);
+}
+
+.mobilesidemenu input[type="checkbox"]:checked ~ label::after {
+    /* state of main menu label::after when menu is open  */
+    transform: rotate(45deg);
+}
+
+.mobilesidemenu input[type="checkbox"]:checked ~ nav {
+    /* state of NAV when menu is open  */
+    left: 0;
+    /* set left to 0 to animate it into view  */
+}
+
+.mobilesidemenu input[type="checkbox"]:checked ~ div.overlay {
+    /* state of overlay when menu is open  */
+    visibility: visible;
+}
+
+</style>
+
+
+<style>
+
+.mobilesidemenu > label{
+	border: 6px solid black;
+	background: #eee;
+	height: 30px;
+}
+
+</style>
+
+<script>
+ // ie 8 menu compatibility code:
+document.createElement("nav")
+window.onload = function(){
+	var mobilemenunav = document.getElementById("msidemenu")
+	var mobilemaintoggler = document.getElementById("maintoggler")
+	var mobilenavtoggler = document.getElementById("navtoggler")
+	mobilemaintoggler.onclick = function(){
+		mobilemenunav.style.left = 0
+	}
+	mobilenavtoggler.onclick = function(){
+		mobilemenunav.style.left = '-100%'
+	}
+}
+
+</script>
+<body>
+    <header>
+        <h1>PacMan 3D - Аркадна гра</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">Про гру</a></li>
+                <li><a href="#screenshots">Скріншоти</a></li>
+                <li><a href="#download">Завантажити</a></li>
+            </ul>
+        </nav>
+    </header>
+	<div class="mobilesidemenu">
+	<input type="checkbox" id="togglebox" />
+	<!-- Modify anything inside the NAV element -->
+	<nav id="msidemenu">
+			<h2>Меню</h2>
+		
+		<li><a href="index.html">Головна сторінка</a></li><br>
+	<li><a href="PhysiQuiz.html">Physi Quiz</a></li><br>
+		<li><a href="game4096.html">game4096</a></li><br>
+		<li><a href="PixeWarrior.html">PixeWarrior</a></li><br>
+		<li><a href="sweet_match_3.html">SweetMatch3</a></li><br>
+		
+		
+		
+		<label for="togglebox" id="navtoggler"></label>
+	</nav>
+	
+	<div class="overlay"><label for="togglebox"></label></div>
+	<label class="toggler" id="maintoggler" for="togglebox"></label>
+</div>
+    <section id="about">
+        <div class="container">
+            <h2>Про гру</h2>
+            <p>PacMan 3D - це захоплююча аркадна гра з класичним геймплеєм, але з сучасним тривимірним підходом. Ви керуєте головним героєм - PacMan, який має збирати всі пелюстки в лабіринті, уникаючи привидів, щоб отримати високі бали. Гра пропонує різні рівні складності, складні лабіринти з прихованими стежками та таємними зонами, які ви зможете розблокувати.</p>
+        </div>
+    </section>
+    <section id="screenshots">
+        <div class="container">
+            <h2>Скріншоти</h2>
+                
+      <section id="games">
+       <div class="slideshow-container">
+
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides fade">
+    <div class="numbertext">1 / 4</div>
+   <center> <img src="photo_2023-04-12_19-27-53.jpg" style="width:75%"></center>
+    <div class="text">PacMan3d</div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">2 / 4</div>
+   <center> <img src="photo_2023-04-12_19-27-51.jpg" style="width:75%"></center>
+    <div class="text">PacMan3d</div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">3 / 4</div>
+ <center>   <img src="photo_2023-04-12_19-27-50.jpg" style="width:75%"></center>
+    <div class="text">PacMan3d</div>
+  </div>
+   <div class="mySlides fade">
+    <div class="numbertext">4 / 4</div>
+ <center>   <img src="photo_2023-04-12_19-27-45.jpg" style="width:75%"> </center>
+    <div class="text">PacMan3d</div>
+  </div>
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+   <span class="dot" onclick="currentSlide(4)"></span>
+</div>
+      </section>
+	    </section>
+        </div>
+    </section>
+    <section id="download">
+        <div class="container">
+            <h2>Завантажити гру</h2>
+            <p>Ви можете завантажити гру PacMan 3D з Play Market на своєму Android-пристрої. Натисніть на кнопку нижче, щоб перейти на сторінку гри у магазині Play Market.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.Yegmina.pacman3d" class="download-button" target="_blank" rel="noopener">Завантажити з Play Market</a>
+</div>
+</section>
+<footer>
+<div class="container">
+<p>© 2023 PacMan 3D. Усі права захищено (ст. 8 Закону України «Про авторське право і суміжні права»).</p>
+</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>PhysiQuiz - A Fun and Educational Physics Quiz Game</title>
+	 <style>
+ /* Reset CSS */
+ html, body {
+  width: 100%;
+  height: 100%;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* General styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+a {
+  color: #0077cc;
+  text-decoration: none;
+  position: relative;
+}
+
+a:hover {
+  color: green;
+}
+
+a:hover::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: green;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s ease-in-out;
+}
+
+a:hover::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  right: 0;
+  width: 100%;
+  height: 2px;
+  background-color: orange;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.2s ease-in-out;
+}
+
+a:hover::before,
+a:hover::after {
+  transform: scaleX(1);
+}
+
+
+ul {
+  list-style: none;
+}
+
+/* Header styles */
+header {
+  background-color: #fff;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul li {
+  margin-right: 1.5rem;
+}
+
+/* Main styles */
+main {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+section {
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: orange;
+  opacity: 0.5;
+}
+
+section::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: orange;
+  opacity: 0.5;
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+section p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+section a {
+  display: inline-block;
+  background-color: orange;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+
+
+
+/* Footer styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+footer p {
+  margin-bottom: 0;
+}
+
+
+
+
+
+  </style>
+  
+  <style type="text/css">
+
+.gallerycontainer{
+position: relative;
+/*Add a height attribute and set to largest image's height to prevent overlaying*/
+}
+
+.thumbnail img{
+border: 1px solid white;
+margin: 0 5px 5px 0;
+}
+
+.thumbnail:hover{
+background-color: transparent;
+}
+
+.thumbnail:hover img{
+border: 1px solid blue;
+}
+
+.thumbnail span{ /*CSS for enlarged image*/
+position: absolute;
+background-color: lightyellow;
+padding: 5px;
+left: -1000px;
+border: 1px dashed gray;
+visibility: hidden;
+color: black;
+text-decoration: none;
+}
+
+.thumbnail span img{ /*CSS for enlarged image*/
+border-width: 0;
+padding: 2px;
+width: 100%;
+}
+
+.thumbnail:hover span{ /*CSS for enlarged image*/
+visibility: visible;
+top: -100px;
+left: 400px; /*position where enlarged image should offset horizontally */
+z-index: 50;
+transform: scale(5);
+}
+
+
+</style>
+
+
+
+  </head>
+  <body>
+  <header>
+      <h1>Yegmina</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Yegmina</a></li>
+          <li><a href="#about"></a></li>
+		  <li><a href="PhysiQuiz.html">PhysiQuiz</a></li>
+          <li><a href="#contact">Контакти</a></li>
+		  <!-- доделать!-->
+        </ul>
+      </nav>
+    </header>
+  
+    <h1>PhysiQuiz - Забавна та Освітня Гра-вікторина з Фізики</h1>
+<section>
+<p>
+  PhysiQuiz - це забавна та освітня гра-вікторина, яка перевіряє ваші знання з фізики. З широким спектром питань, що охоплюють теми, такі як механіка, термодинаміка, електромагнетизм та інші, ця гра кине виклик вашому розумінню фізичного світу навколо нас.
+</p>
+</section>
+    <h2>Особливості</h2>
+<section>
+<ul>
+  <li><h4 align="center">Кілька рівнів складності</h4></li>
+  <li><h4 align="center">Формат запитань "правда-брехня"</h4></li>
+  <li><h4 align="center">Детальні пояснення до кожного запитання</h4></li>
+  <li><h4 align="center">Відстеження прогресу</h4></li>
+</ul>
+</section>
+<h2>Деякі скріни з гри</h2>
+<div class="gallerycontainer">
+
+<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-32.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-32.jpg" style="width: 100%;"/><h6>PhysiQuiz</h6></span></a>
+
+<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-33.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-33.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
+
+
+
+<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-34.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-34.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
+
+
+
+
+<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-36.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-36.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
+
+
+<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-37.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-37.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
+
+
+
+
+<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-38.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-38.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
+
+
+
+</div>
+
+<h2>Як грати</h2>
+<section>
+<p>
+  Щоб грати в PhysiQuiz, просто виберіть рівень складності та почніть
+  відповідати на запитання. Кожне запитання презентується у форматі
+  "правда-брехня", що дозволяє легко грати та розуміти. Після відповіді на
+  запитання гра надасть детальне пояснення правильної відповіді, щоб ви
+  могли навчитися на своїх помилках та покращити своє розуміння фізичних
+  концепцій.
+</p>
+</section>
+<h2>Для кого це?</h2>
+<section>
+<p>
+  Незалежно від того, чи ви студент фізик, чи просто любите вчитися про
+  світ навколо вас, PhysiQuiz - це чудовий спосіб випробувати себе та
+  розширити свої знання фізики. З кількома рівнями складності, гра підходить
+  як початківцям, так і експертам.
+</p>
+</section>
+<h2>Початок гри</h2>
+<section>
+<p>
+  Готові перевірити свої знання фізики? Грайте в PhysiQuiz сьогодні та
+  перевірте свої знання порівняно з іншими! Гра доступна безкоштовно на
+  пристроях Android та iOS.
+</p>
+</section>
+
+  </body>
+</html>

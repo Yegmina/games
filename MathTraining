@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Math Training - Математичний тренажер</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+			h1 {
+		color: #1a237e;
+		text-align: center;
+		margin-top: 50px;
+	}
+
+	p {
+		color: #424242;
+		font-size: 20px;
+		line-height: 1.5;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		text-align: center;
+	}
+
+	.container {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 20px;
+		background-color: #ffffff;
+		border-radius: 10px;
+		box-shadow: 0 0 10px rgba(0,0,0,0.2);
+	}
+
+	button {
+		display: block;
+		margin: 0 auto;
+		margin-top: 20px;
+		background-color: #1a237e;
+		color: #ffffff;
+		border: none;
+		border-radius: 5px;
+		padding: 10px 20px;
+		font-size: 18px;
+		cursor: pointer;
+	}
+
+	button:hover {
+		background-color: #0d1e61;
+	}
+	.carousel-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel img {
+  width: 100%;
+  height: auto;
+}
+
+.carousel img:hover {
+  cursor: pointer;
+}
+
+</style>
+<script>
+const carousel = document.querySelector(".carousel");
+const images = document.querySelectorAll(".carousel img");
+const prevButton = document.createElement("button");
+const nextButton = document.createElement("button");
+
+let counter = 1;
+const size = images[0].clientWidth;
+
+carousel.style.transform = `translateX(${-size * counter}px)`;
+
+prevButton.innerHTML = "Prev";
+prevButton.classList.add("prev-btn");
+nextButton.innerHTML = "Next";
+nextButton.classList.add("next-btn");
+
+document.body.appendChild(prevButton);
+document.body.appendChild(nextButton);
+
+nextButton.addEventListener("click", () => {
+  if (counter >= images.length - 1) return;
+  carousel.style.transition = "transform 0.5s ease";
+  counter++;
+  carousel.style.transform = `translateX(${-size * counter}px)`;
+});
+
+prevButton.addEventListener("click", () => {
+  if (counter <= 0) return;
+  carousel.style.transition = "transform 0.5s ease";
+  counter--;
+  carousel.style.transform = `translateX(${-size * counter}px)`;
+});
+
+images.forEach((image) => {
+  image.addEventListener("click", () => {
+    window.location.href = "new-page.html";
+  });
+});
+
+</script>
+</head>
+<body>
+	<div class="container">
+		<h1>Math Training - Математичний тренажер</h1>
+		<div class="carousel-container">
+  <div class="carousel">
+    <img src="https://play-lh.googleusercontent.com/M7NhheOH7x55EAhPG1L6H1y_HyRZ_mU7G5OM1UVUKi73P54AJ0uJ2KU8_CzLga441g=w1052-h592-rw" alt="Image 1">
+    <img src="img2.jpg" alt="Image 2">
+    <img src="img3.jpg" alt="Image 3">
+  </div>
+</div>
+
+		<p>Math Training - це безкоштовна математична гра тренажер, яка допомага вдосконалити навички розв'язування математичних задач.</p>
+		<p>Гра містить різні рівні складності та види математичних завдань, такі як додавання, віднімання, множення, ділення, а також розв'язування математичних рівнянь.</p>
+		<p>Завдяки Math Training ви можете тренувати свої математичні навички в будь-який зручний для вас час та місце, використовуючи свій смартфон або планшет.</p>
+		<button>Грати зараз</button>
+	</div>
+</body>
+</html>
