@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>PhysiQuiz - A Fun and Educational Physics Quiz Game</title>
-	 <style>
+    <title>PhyLabPhone - Фізична лабораторія в телефоні</title>
+ <style>
  /* Reset CSS */
  html, body {
   width: 100%;
@@ -133,7 +133,7 @@ section::before {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: gold;
+  background-color: green;
   opacity: 0.5;
 }
 
@@ -145,7 +145,7 @@ section::after {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: gold;
+  background-color: green;
   opacity: 0.5;
 }
 
@@ -502,25 +502,25 @@ window.onload = function(){
 </script>
 
 <style>
-.decor-3::before {
+.decor-2::before {
     content: "";
-    width: 10px;
-    height: 40px;
+    width: 40px;
+    height: 3px;
     background-color: #5FE1B3;
     position: absolute;
     z-index: -1;
-    transform: translate(-20px, 5px);
+    transform: translate(-50px, 18px);
 }
-.decor-3::after {
-  content: '';
-  display: block;
-  width: 258px;
-  height: 3px;
-  margin: 5px auto 0;
-  background-color: #5FE1B3;
+.decor-2::after {
+    content: "";
+    width: 40px;
+    height: 3px;
+    background-color: #5FE1B3;
+    position: absolute;
+    z-index: -1;
+    transform: translate(10px, 18px);
 }
 </style>
-
 
   </head>
   <body>
@@ -528,16 +528,14 @@ window.onload = function(){
 	<input type="checkbox" id="togglebox" />
 	<!-- Modify anything inside the NAV element -->
 	<nav id="msidemenu">
-		<h2>Меню</h2>
+			<h2>Меню</h2>
 		
 		<li><a href="index.html">Головна сторінка</a></li><br>
-		
-		<li><a href="PixeWarrior.html">Pixe Warrior</a></li><br>
+	<li><a href="PhysiQuiz.html">Physi Quiz</a></li><br>
 		<li><a href="game4096.html">game4096</a></li><br>
 			<li><a href="PacMan3d.html">PacMan3d</a></li><br>
 			
 				<li><a href="sweet_match_3.html">SweetMatch3</a></li><br>
-		
 		
 		
 		
@@ -547,90 +545,48 @@ window.onload = function(){
 	<div class="overlay"><label for="togglebox"></label></div>
 	<label class="toggler" id="maintoggler" for="togglebox"></label>
 </div>
+    <header>
+      <h1>PhyLabPhone - Фізична лабораторія в телефоні</h1>
+    </header>
 
-  
-    <h1><a href="https://play.google.com/store/apps/details?id=com.Yegmina.PhysiQuiz"> PhysiQuiz </a> - Забавна та Освітня Гра-вікторина з Фізики</h1>
-<section>
-<p>
-  <a href="https://play.google.com/store/apps/details?id=com.Yegmina.PhysiQuiz"> PhysiQuiz </a> - це забавна та освітня гра-вікторина, яка перевіряє ваші знання з фізики. З широким спектром питань, що охоплюють теми, такі як механіка, термодинаміка, електромагнетизм та інші, ця гра кине виклик вашому розумінню фізичного світу навколо нас.
-</p>
-</section>
-    <h2 class="decor-3" align="center">Особливості</h2>
-<section>
-<ul>
-  <li><h4 align="center">Кілька рівнів складності</h4></li>
-  <li><h4 align="center">Формат запитань "правда-брехня"</h4></li>
-  <li><h4 align="center">Детальні пояснення до кожного запитання</h4></li>
-  <li><h4 align="center">Відстеження прогресу</h4></li>
-</ul>
-</section>
-<h2  class="decor-3" align="center">Деякі скріни з гри</h2>
-<div class="gallerycontainer">
+    <main>
+      <section>
+        <h2>Про проєкт</h2>
+        <p>
+          "Фізична лабораторія в телефоні" — це інноваційний додаток-гра, що вирішує актуальну проблему недоступності спеціалізованого лабораторного обладнання для фізичних експериментів. Цей додаток перетворює мобільний телефон у портативну лабораторію, роблячи науку доступнішою.
+        </p>
+      </section>
 
-<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-32.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-32.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
+      <section>
+        <h2>Чому це важливо?</h2>
+        <p>
+          В умовах обмеженого доступу до лабораторного обладнання, наприклад під час карантину або війни, студенти не мають можливості проводити фізичні експерименти. Додаток дозволяє перетворити смартфон в такі прилади, як динамометри, амперметри, вольтметри та інші.
+        </p>
+      </section>
 
-<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-33.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-33.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
+      <section>
+        <h2>Переваги</h2>
+        <ul>
+          <li>Вивчення фізики на практиці</li>
+          <li>Доступність експериментів без дорогого обладнання</li>
+          <li>Зрозумілі відеоінструкції для кожної вправи</li>
+          <li>Підходить для учнів, студентів і вчителів</li>
+        </ul>
+      </section>
 
+      <section>
+        <h2>Скріншоти додатку</h2>
+        <div class="gallerycontainer">
+          <a class="thumbnail" href="#thumb"><img src="https://play-lh.googleusercontent.com/--ny67zkqRLKqkmSINKp-BiR8_UuQvjp3NgdbNxSB3CWO_nfZDyR1Dmg-vkImklJEqw=w526-h296-rw" width="100px" height="66px" border="0" /><span><img src="https://play-lh.googleusercontent.com/--ny67zkqRLKqkmSINKp-BiR8_UuQvjp3NgdbNxSB3CWO_nfZDyR1Dmg-vkImklJEqw=w526-h296-rw" style="width: 100%;" /><br />PhyLabPhone</span></a>
+          <a class="thumbnail" href="#thumb"><img src="https://play-lh.googleusercontent.com/tRmJAIorKaloyuHnNAk3yCXGngdsIebWAWbUTPd0IikastNtgkB6Lce1P9k-MvzNjg=w526-h296-rw" width="100px" height="66px" border="0" /><span><img src="https://play-lh.googleusercontent.com/tRmJAIorKaloyuHnNAk3yCXGngdsIebWAWbUTPd0IikastNtgkB6Lce1P9k-MvzNjg=w526-h296-rw" style="width: 100%;" /><br />PhyLabPhone</span></a>
+          <a class="thumbnail" href="#thumb"><img src="https://play-lh.googleusercontent.com/eKzzLNF21hrCEDbNG_SLViHjLwH9AQCKbK7drpGAGb1cUBscFnJLbxkgqTiJnNkxvA=w526-h296-rw" width="100px" height="66px" border="0" /><span><img src="https://play-lh.googleusercontent.com/eKzzLNF21hrCEDbNG_SLViHjLwH9AQCKbK7drpGAGb1cUBscFnJLbxkgqTiJnNkxvA=w526-h296-rw" style="width: 100%;" /><br />PhyLabPhone</span></a>
+        </div>
+      </section>
+    </main>
 
-
-<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-34.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-34.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
-
-
-
-
-<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-36.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-36.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
-
-
-<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-37.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-37.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
-
-
-
-
-<a class="thumbnail" href="#thumb"><img src="photo_2023-03-25_22-19-38.jpg" width="100px" height="66px" border="0" /><span><img src="photo_2023-03-25_22-19-38.jpg" style="width: 100%;"/><br />PhysiQuiz</span></a>
-
-
-
-</div>
-
-<h2  class="decor-3" align="center">Як грати</h2>
-<section>
-<p>
-  Щоб грати в <a href="https://play.google.com/store/apps/details?id=com.Yegmina.PhysiQuiz"> PhysiQuiz </a>, просто виберіть рівень складності та почніть
-  відповідати на запитання. Кожне запитання презентується у форматі
-  "правда-брехня", що дозволяє легко грати та розуміти. Після відповіді на
-  запитання гра надасть детальне пояснення правильної відповіді, щоб ви
-  могли навчитися на своїх помилках та покращити своє розуміння фізичних
-  концепцій.
-</p>
-</section>
-<h2  class="decor-3" align="center">Для кого це?</h2>
-<section>
-<p>
-  Незалежно від того, чи ви студент фізик, чи просто любите вчитися про
-  світ навколо вас, <a href="https://play.google.com/store/apps/details?id=com.Yegmina.PhysiQuiz"> PhysiQuiz </a> - це чудовий спосіб випробувати себе та
-  розширити свої знання фізики. З кількома рівнями складності, гра підходить
-  як початківцям, так і експертам.
-</p>
-</section>
-<h2 class="decor-3" align="center">Початок гри</h2>
-<section>
-<p>
-  Готові перевірити свої знання фізики? Грайте в <a href="https://play.google.com/store/apps/details?id=com.Yegmina.PhysiQuiz"> PhysiQuiz </a> сьогодні та
-  перевірте свої знання порівняно з іншими! Гра доступна безкоштовно на
-  пристроях Android.
-</p>
-</section>
- <footer>
-
-Created by Tereshchenko Yehor,
-Yegmina<br>
-<img src="https://play-lh.googleusercontent.com/EbEX3AN4FC4pu3lsElAHCiksluOVU8OgkgtWC43-wmm_aHVq2D65FmEM97bPexilUAvlAY5_4ARH8Tb3RxQ=w96-h32-rw">
-<br>Електронна адреса:
-<br><a href="mailto:yegmina1@gmail.com">yegmina1@gmail.com</a>
-<div class="container">
-<p>© 2023 Yegmina. Усі права захищено (ст. 8 Закону України «Про авторське право і суміжні права»).</p>
-</div>
-</footer>
+    <footer>
+      <p>© 2024 PhyLabPhone. Всі права захищені.</p>
+    </footer>
 
   </body>
 </html>
